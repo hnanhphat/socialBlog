@@ -26,10 +26,12 @@ a {
   color: $black;
   text-decoration: none;
   @include transition_c(all 0.3s ease-out);
+
   &:link,
   &:visited {
     color: currentColor;
   }
+
   &:active,
   &:hover {
     opacity: 0.5;
@@ -45,6 +47,7 @@ button {
   border: none;
   cursor: pointer;
   @include transition_c(all 0.3s ease-out);
+
   &:focus {
     outline: none;
   }
