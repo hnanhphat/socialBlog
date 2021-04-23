@@ -1,5 +1,45 @@
 /* LAM */
 
 /* KHUONG */
-
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hearder-home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  background-color: rgba(128, 128, 128, 0.247);
+  width: 100%;
+}
+.hearder-home a {
+  margin-right: 10px;
+}
+.hearder-home h2 {
+  color: rgba(255, 0, 0, 0.836);
+  margin-left: 10px;
+}
+.social-blogs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+  background-color: rgba(128, 128, 128, 0.247);
+  border: 2px solid white;
+  width: 70%;
+  border-radius: 10px;
+}
+.content-home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  flex-wrap: wrap;
+}
+.card-img {
+  height: 150px;
+}
 /* TRIEU */
