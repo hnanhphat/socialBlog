@@ -1,7 +1,7 @@
 const initialState = {};
 
 const userReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  // const { type, payload } = action;
   return { ...state };
 };
 

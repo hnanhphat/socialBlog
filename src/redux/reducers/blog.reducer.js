@@ -1,7 +1,7 @@
 const initialState = {};
 
 const blogReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  // const { type, payload } = action;
   return { ...state };
 };
 
