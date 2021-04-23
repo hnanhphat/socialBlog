@@ -1,8 +1,4 @@
-const initialState = {
-  blogList: [],
-  loading: false,
-  selectedJob: null,
-};
+const initialState = {};
 
 const blogReducer = (state = initialState, action) => {
   const { type, payload } = action;

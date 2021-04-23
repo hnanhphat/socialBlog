@@ -1,8 +1,4 @@
-const initialState = {
-  user: null,
-  loading: false,
-  error: null,
-};
+const initialState = {};
 
 const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
