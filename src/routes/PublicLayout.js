@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router";
 
 // PAGES
 import HomePage from "../pages/HomePage";
-import LoginPage from "../pages/LoginPage";
+import AccountPage from "../pages/AccountPage";
 import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
@@ -13,7 +13,7 @@ const PublicLayout = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/login" component={AccountPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </div>

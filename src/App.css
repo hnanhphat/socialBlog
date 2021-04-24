@@ -8,7 +8,8 @@
   box-sizing: border-box; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
 
 body {
   background: #fafafa;
@@ -122,6 +123,9 @@ input:focus {
 
 .sidebar {
   width: 36%; }
+
+.account .container {
+  display: flex; }
 
 #home .first-view {
   background-attachment: fixed;

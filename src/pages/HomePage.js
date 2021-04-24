@@ -26,16 +26,16 @@ const HomePage = () => {
                 spiritual beings having a human experience.
               </h2>
               <h4 className="author">Pierre Teilhard de Chardin</h4>
-              <Link to="/" className="first-view__btn not-hover">
+              <a href="#main-content" className="first-view__btn not-hover">
                 <svg>
                   <rect x="0" y="0" fill="none" width="100%" height="100%" />
                 </svg>
                 See posts
-              </Link>
+              </a>
             </div>
           </div>
         </section>
-        <section className="main-content">
+        <section id="main-content" className="main-content">
           <div className="container container--small">
             <div className="blogs">
               <ul className="blogs__list">
