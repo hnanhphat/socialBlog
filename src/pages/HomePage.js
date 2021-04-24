@@ -1,5 +1,5 @@
 import noImg from "../img/no-image.png";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BlogActions } from "../redux/actions/blog.action";
@@ -9,16 +9,17 @@ import Moment from "react-moment";
 const HomePage = () => {
   let dispatch = useDispatch();
   const blogList = useSelector((state) => state.blog.blogs.data);
-  console.log(blogList);
+  const [random, setRandom] = useState(null);
 
   useEffect(() => {
+    setRandom(Math.floor(Math.random() * 20));
     dispatch(BlogActions.getBlog());
   }, [dispatch]);
 
   return (
     <div id="wrap">
       <main>
-        <section className="first-view first-view--10">
+        <section className={`first-view first-view--${random}`}>
           <div className="container">
             <div className="first-view__quote">
               <h2 className="title">
@@ -42,7 +43,7 @@ const HomePage = () => {
                 {blogList &&
                   blogList.data.blogs.map((blog) => (
                     <li key={blog._id}>
-                      <Link to="/" className="not-hover">
+                      <Link to={`/${blog._id}`} className="not-hover">
                         <div className="author">
                           <div className="author__avatar author__avatar--no-img"></div>
                           <div className="author__username">
