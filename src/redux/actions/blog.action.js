@@ -21,4 +21,26 @@ const getSingleBlog = (id) => async (dispatch) => {
   }
 };
 
-export const BlogActions = { getBlog, getSingleBlog };
+const getReviews = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "REVIEWS_REQUEST_START", payload: null });
+    const reslist = await api.get(`/reviews/blogs/${id}`);
+    dispatch({ type: "REVIEWS_REQUEST_SUCCESS", payload: reslist });
+  } catch (error) {
+    dispatch({ type: "REVIEWS_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
+const postReview = ({ content }, id) => async (dispatch) => {
+  try {
+    dispatch({ type: "WRITEREVIEW_REQUEST_START", payload: null });
+    const res = await api.post(`/reviews/blogs/${id}`, content);
+    dispatch({ type: "WRITEREVIEW_REQUEST_SUCCESS", payload: null });
+  } catch (error) {
+    dispatch({ type: "WRITEREVIEW_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
+export const BlogActions = { getBlog, getSingleBlog, getReviews, postReview };

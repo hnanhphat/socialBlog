@@ -5,7 +5,6 @@ import { Route, Switch } from "react-router";
 import HomePage from "../pages/HomePage";
 import DetailPage from "../pages/DetailPage";
 import AccountPage from "../pages/AccountPage";
-import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 const PublicLayout = () => {
@@ -13,9 +12,8 @@ const PublicLayout = () => {
     <div id="home">
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/:id" component={DetailPage} />
-        <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={AccountPage} />
+        <Route exact path="/:id" component={DetailPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </div>
