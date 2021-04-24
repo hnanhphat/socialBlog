@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -15,7 +16,12 @@ const Header = () => {
   }, [status]);
 
   return (
-    <header id="header" className={`header ${status ? "header--scroll" : ""}`}>
+    <header
+      id="header"
+      className={`header ${
+        status || location.pathname.length > 1 ? "header--scroll" : ""
+      }`}
+    >
       <Link to="/" className="header__left not-hover">
         <svg
           aria-hidden="true"
@@ -36,7 +42,6 @@ const Header = () => {
       <div className="header__right">
         <div className="list">
           <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
         </div>
       </div>
     </header>
