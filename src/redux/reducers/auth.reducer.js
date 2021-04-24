@@ -11,7 +11,6 @@ const authReducer = (state = initialState, action) => {
       break;
     case "LOGIN_REQUEST_SUCCESS":
       state.loading = false;
-      state.isAuth = true;
       console.log("success!!!");
       break;
     case "LOGIN_REQUEST_FAIL":
