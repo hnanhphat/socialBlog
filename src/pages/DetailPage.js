@@ -9,24 +9,21 @@ const DetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const singleBlog = useSelector((state) => state.blog.singleBlog.data);
-  // const reviews = useSelector((state) => state.blog.comment.data);
-  console.log(singleBlog);
   const imgHeight = document.getElementById("img-item");
 
   // const checkLogin = localStorage.getItem("accessToken");
   const [update, setUpdate] = useState({});
-  const [cmtInput, setCmtInput] = useState({ content: "" });
+  const [content, setContent] = useState({ content: "" });
 
   const handleChange = (e) => {
-    console.log({ ...cmtInput, [e.target.name]: e.target.value });
-    setCmtInput({ ...cmtInput, [e.target.name]: e.target.value });
+    setContent({ ...content, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(BlogActions.postReview(cmtInput, id));
+    dispatch(BlogActions.postReview({ content }, id));
     dispatch(BlogActions.getSingleBlog(id));
-    setUpdate({ ...cmtInput });
+    setUpdate({ ...content });
     e.target.reset();
   };
 

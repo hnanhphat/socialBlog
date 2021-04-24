@@ -14,7 +14,6 @@ const getSingleBlog = (id) => async (dispatch) => {
   try {
     dispatch({ type: "SINGLEBLOG_REQUEST_START" });
     const res = await api.get(`/blogs/${id}`);
-    console.log("get data done");
     dispatch({ type: "SINGLEBLOG_REQUEST_SUCCESS", payload: res });
   } catch (error) {
     dispatch({ type: "SINGLEBLOG_REQUEST_FAIL", payload: error.message });
