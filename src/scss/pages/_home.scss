@@ -10,7 +10,7 @@
     min-height: 100vh;
     position: relative;
 
-    @for $i from 1 through 20 {
+    @for $i from 0 through 20 {
       &--#{$i} {
         background-image: url('./img/bg_#{$i}.jpg');
       }
@@ -109,9 +109,11 @@
 
     .container {
       display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
 
       .blogs {
-        width: 64%;
+        width: 60%;
 
         &__list {
           li {

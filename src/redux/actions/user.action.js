@@ -1,6 +1,6 @@
 import api from "../../apiService";
 
-const getCurrentUser = (dta) => async (dispatch) => {
+const getCurrentUser = () => async (dispatch) => {
   try {
     dispatch({ type: "CURRENTUSER_REQUEST_START", payload: null });
     const data = await api.get("/users/me");

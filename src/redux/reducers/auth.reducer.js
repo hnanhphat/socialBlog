@@ -1,9 +1,10 @@
 const initialState = {
+  isAuth: localStorage.getItem("accessToken"),
   loading: false,
 };
 
 const authReducer = (state = initialState, action) => {
-  const { type } = action;
+  const { type, payload } = action;
   switch (type) {
     case "LOGIN_REQUEST_START":
     case "REGISTER_REQUEST_START":
@@ -11,7 +12,7 @@ const authReducer = (state = initialState, action) => {
       break;
     case "LOGIN_REQUEST_SUCCESS":
       state.loading = false;
-      console.log("success!!!");
+      state.isAuth = payload;
       break;
     case "LOGIN_REQUEST_FAIL":
       state.loading = false;

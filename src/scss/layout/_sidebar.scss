@@ -1,3 +1,54 @@
 .sidebar {
-  width: 36%;
+  background: $white;
+  width: 38%;
+
+  &__content {
+    .author {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+
+      &__avatar {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        margin-right: 12px;
+      }
+
+      &__info {
+        flex: 1;
+
+        h3,
+        p {
+          font-size: 12px;
+        }
+      }
+
+      &__btn {
+        color: $red-light;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__not-login {
+    color: $grey-dark;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+
+    &:link,
+    &:visited {
+      color: $grey-dark;
+    }
+
+    svg {
+      width: 18px;
+      margin-right: 8px;
+    }
+  }
 }

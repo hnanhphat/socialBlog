@@ -6,7 +6,7 @@ import { userActions } from "../redux/actions/user.action";
 
 const Header = () => {
   const location = useLocation();
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [status, setStatus] = useState("");
   const currentUser = useSelector((state) => state.user.currentUser.data);
   const checkLogin = localStorage.getItem("accessToken");
@@ -70,6 +70,7 @@ const Header = () => {
                   style={{ backgroundImage: `url('${noImg}')` }}
                 ></div>
               )}
+              <div className="dropdown"></div>
             </Link>
           </div>
         ) : (

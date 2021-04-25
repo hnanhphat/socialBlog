@@ -74,7 +74,6 @@ const HomePage = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="post"></div>
                       </Link>
                     </li>
                   ))}
