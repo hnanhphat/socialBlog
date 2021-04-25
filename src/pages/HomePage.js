@@ -12,11 +12,22 @@ const HomePage = () => {
   const blogList = useSelector((state) => state.blog.blogs.data);
   const currentPage = useSelector((state) => state.blog.currentPage);
   const [random, setRandom] = useState(null);
+  const [quote, setQuote] = useState(null);
 
   useEffect(() => {
     setRandom(Math.floor(Math.random() * 20));
     dispatch(BlogActions.getBlog(currentPage));
   }, [dispatch, currentPage]);
+
+  useEffect(() => {
+    const getQuote = async () => {
+      const url = `https://quote-garden.herokuapp.com/api/v3/quotes/random`;
+      const res = await fetch(url);
+      const data = await res.json();
+      setQuote(data.data);
+    };
+    getQuote();
+  }, []);
 
   return (
     <div id="wrap">
@@ -24,11 +35,8 @@ const HomePage = () => {
         <section className={`first-view first-view--${random}`}>
           <div className="container">
             <div className="first-view__quote">
-              <h2 className="title">
-                We are not human beings having a spiritual experience. We are
-                spiritual beings having a human experience.
-              </h2>
-              <h4 className="author">Pierre Teilhard de Chardin</h4>
+              <h2 className="title">{quote && quote[0].quoteText}</h2>
+              <h4 className="author">{quote && quote[0].quoteAuthor}</h4>
               <a href="#main-content" className="first-view__btn not-hover">
                 <svg>
                   <rect x="0" y="0" fill="none" width="100%" height="100%" />
