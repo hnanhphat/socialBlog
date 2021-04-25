@@ -23,7 +23,7 @@ const Header = () => {
 
   useEffect(() => {
     if (checkLogin) {
-      dispatch(userActions.getCurrentUser());
+      dispatch(userActions.getUser());
     }
   }, [dispatch, checkLogin]);
 

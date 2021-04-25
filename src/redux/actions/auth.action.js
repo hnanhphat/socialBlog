@@ -1,6 +1,5 @@
 import api from "../../apiService";
 import { routeActions } from "./route.action";
-import { userActions } from "./user.action";
 
 const loginUser = (data) => async (dispatch) => {
   try {

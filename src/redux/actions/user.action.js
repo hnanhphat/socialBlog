@@ -1,13 +1,23 @@
 import api from "../../apiService";
 
-const getCurrentUser = () => async (dispatch) => {
+const getUser = () => async (dispatch) => {
   try {
-    dispatch({ type: "CURRENTUSER_REQUEST_START", payload: null });
+    dispatch({ type: "GETUSER_REQUEST_START", payload: null });
     const data = await api.get("/users/me");
-    dispatch({ type: "CURRENTUSER_REQUEST_SUCCESS", payload: data });
+    dispatch({ type: "GETUSER_REQUEST_SUCCESS", payload: data });
   } catch (error) {
-    dispatch({ type: "CURRENTUSER_REQUEST_FAIL", payload: error.message });
+    dispatch({ type: "GETUSER_REQUEST_FAIL", payload: error.message });
   }
 };
 
-export const userActions = { getCurrentUser };
+const editUser = ({ name, avatarUrl }) => async (dispatch) => {
+  try {
+    dispatch({ type: "EDITUSER_REQUEST_START", payload: null });
+    const data = await api.put("/users", { name, avatarUrl });
+    dispatch({ type: "EDITUSER_REQUEST_SUCCESS", payload: data });
+  } catch (error) {
+    dispatch({ type: "EDITUSER_REQUEST_FAIL", payload: error.message });
+  }
+};
+
+export const userActions = { getUser, editUser };

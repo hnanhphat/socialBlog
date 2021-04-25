@@ -14,9 +14,9 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    // if (checkLogin) {
-    //   dispatch(userActions.getCurrentUser());
-    // }
+    if (checkLogin) {
+      dispatch(userActions.getUser());
+    }
   }, [dispatch, checkLogin]);
 
   return (
@@ -45,7 +45,7 @@ const SideBar = () => {
               Logout
             </button>
           </div>
-          <div className="friends">
+          {/* <div className="friends">
             <h3 className="friends__title"></h3>
             <ul className="friends__list">
               <li>
@@ -54,7 +54,7 @@ const SideBar = () => {
                 <div className="btns"></div>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       ) : (
         <Link to="/login" className="sidebar__not-login not-hover">

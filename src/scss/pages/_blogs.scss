@@ -42,6 +42,17 @@
         width: 100%;
       }
 
+      &--btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        button {
+          margin: 0 5px !important;
+        }
+      }
+
       svg {
         position: absolute;
         top: 50%;
@@ -92,7 +103,8 @@
         }
       }
 
-      &[type=submit] {
+      &[type=submit],
+      &.edit {
         background-image: linear-gradient(to right, $red-light, $red-dark);
         border-radius: 100px;
         color: $white;
@@ -103,6 +115,25 @@
         max-width: 120px;
         height: 34px;
         margin: 0 auto;
+      }
+
+      &.cancel {
+        background-image: linear-gradient(to right, $red-light, $red-dark);
+        -webkit-background-clip: text;
+        border: 1px solid $red-light;
+        border-radius: 100px;
+        color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 120px;
+        height: 34px;
+        margin: 0 auto;
+      }
+
+      &.disabled {
+        pointer-events: none;
       }
     }
 
