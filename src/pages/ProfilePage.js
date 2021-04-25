@@ -11,7 +11,7 @@ const ProfilePage = () => {
   useEffect(()=>{
     dispatch(UserActions.getUser())
   },[])
-  let [image,setImage]= useState();
+  let [image,setImage]= useState("");
   let [someBoolean,SetsomeBoolean] = useState(true);
   let [form,setForm] = useState({
     name:"",
@@ -34,7 +34,7 @@ const ProfilePage = () => {
           console.log(error);
         }
       }
-    );
+    )
   }
   const handleEdit = (e)=>{
     e.preventDefault();
@@ -58,7 +58,7 @@ const ProfilePage = () => {
       <Button variant="primary" type="edit" onClick={handleEdit}>
         Edit Name
       </Button>
-      <Button variant="info" type="edit" onClick={handleEditAvatar}>
+      <Button variant="info" type="edit" onClick={handleEditAvatar} disabled={someBoolean?true:false}>
         Edit avatar
       </Button>
       <Form.Group controlId="formBasicEmail">
