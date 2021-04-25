@@ -10,7 +10,7 @@
     min-height: 100vh;
     position: relative;
 
-    @for $i from 1 through 16 {
+    @for $i from 1 through 20 {
       &--#{$i} {
         background-image: url('./img/bg_#{$i}.jpg');
       }

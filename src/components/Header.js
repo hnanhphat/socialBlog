@@ -1,9 +1,15 @@
+import noImg from "../img/no-image.png";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../redux/actions/user.action";
 
 const Header = () => {
   const location = useLocation();
+  let dispatch = useDispatch();
   const [status, setStatus] = useState("");
+  const currentUser = useSelector((state) => state.user.currentUser.data);
+  const checkLogin = localStorage.getItem("accessToken");
 
   useEffect(() => {
     window.onscroll = () => {
@@ -14,6 +20,12 @@ const Header = () => {
       }
     };
   }, [status]);
+
+  useEffect(() => {
+    if (checkLogin) {
+      dispatch(userActions.getCurrentUser());
+    }
+  }, [dispatch, checkLogin]);
 
   return (
     <header
@@ -40,9 +52,31 @@ const Header = () => {
         </svg>
       </Link>
       <div className="header__right">
-        <div className="list">
-          <Link to="/login">Login</Link>
-        </div>
+        {checkLogin ? (
+          <div className="list">
+            <Link to="/add">Create Blog</Link>
+            <Link to="/admin" className="current-user">
+              <p className="username">{currentUser && currentUser.data.name}</p>
+              {currentUser && currentUser.data.avatarUrl ? (
+                <div
+                  className="avatar"
+                  style={{
+                    backgroundImage: `url('${currentUser.data.avatarUrl}')`,
+                  }}
+                ></div>
+              ) : (
+                <div
+                  className="avatar"
+                  style={{ backgroundImage: `url('${noImg}')` }}
+                ></div>
+              )}
+            </Link>
+          </div>
+        ) : (
+          <div className="list">
+            <Link to="/login">Login</Link>
+          </div>
+        )}
       </div>
     </header>
   );

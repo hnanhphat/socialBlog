@@ -36,6 +36,7 @@ const postReview = ({ content }, id) => async (dispatch) => {
   try {
     dispatch({ type: "WRITEREVIEW_REQUEST_START", payload: null });
     const res = await api.post(`/reviews/blogs/${id}`, content);
+    console.log(res);
     dispatch({ type: "WRITEREVIEW_REQUEST_SUCCESS", payload: null });
   } catch (error) {
     dispatch({ type: "WRITEREVIEW_REQUEST_FAIL", payload: null });
@@ -47,6 +48,7 @@ const createBlog = (data) => async (dispatch) => {
   try {
     dispatch({ type: "CREATEBLOG_REQUEST_START", payload: null });
     const res = await api.post(`/blogs`, data);
+    console.log(res);
     dispatch(routeActions.redirect("/"));
     dispatch({ type: "CREATEBLOG_REQUEST_SUCCESS", payload: null });
   } catch (error) {

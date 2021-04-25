@@ -5,7 +5,6 @@ const loginUser = (data) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_REQUEST_START", payload: null });
     const res = await api.post("/auth/login", data);
-    console.log(res.data.data.accessToken);
     localStorage.setItem("accessToken", res.data.data.accessToken);
     dispatch(routeActions.redirect("/"));
     dispatch({ type: "LOGIN_REQUEST_SUCCESS", payload: null });
