@@ -1,11 +1,14 @@
 import api from "../../apiService";
 import { routeActions } from "./route.action";
 
-const getBlog = () => async (dispatch) => {
+const getBlog = (currentPage) => async (dispatch) => {
   try {
     dispatch({ type: "BLOG_REQUEST_START" });
-    const data = await api.get("/blogs?page=1&limit=10");
-    dispatch({ type: "BLOG_REQUEST_SUCCESS", payload: data });
+    const data = await api.get(`/blogs?page=${currentPage}&limit=10`);
+    dispatch({
+      type: "BLOG_REQUEST_SUCCESS",
+      payload: { data: data, currentPage: currentPage },
+    });
   } catch (error) {
     dispatch({ type: "BLOG_REQUEST_FAIL", payload: error.message });
   }
@@ -57,10 +60,23 @@ const createBlog = (data) => async (dispatch) => {
   }
 };
 
+const postReaction = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: "REACTION_REQUEST_START", payload: null });
+    const res = await api.post(`/reactions`, data);
+    console.log(res);
+    dispatch({ type: "REACTION_REQUEST_SUCCESS", payload: null });
+  } catch (error) {
+    dispatch({ type: "REACTION_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
 export const BlogActions = {
   getBlog,
   getSingleBlog,
   getReviews,
   postReview,
   createBlog,
+  postReaction,
 };

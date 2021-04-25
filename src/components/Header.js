@@ -11,6 +11,11 @@ const Header = () => {
   const currentUser = useSelector((state) => state.user.currentUser.data);
   const checkLogin = localStorage.getItem("accessToken");
 
+  const handleLogout = () => {
+    localStorage.clear();
+    document.location.reload();
+  };
+
   useEffect(() => {
     window.onscroll = () => {
       if (window.scrollY > window.innerHeight - 90) {
@@ -55,7 +60,7 @@ const Header = () => {
         {checkLogin ? (
           <div className="list">
             <Link to="/add">Create Blog</Link>
-            <Link to="/admin" className="current-user">
+            <div className="current-user">
               <p className="username">{currentUser && currentUser.data.name}</p>
               {currentUser && currentUser.data.avatarUrl ? (
                 <div
@@ -70,8 +75,21 @@ const Header = () => {
                   style={{ backgroundImage: `url('${noImg}')` }}
                 ></div>
               )}
-              <div className="dropdown"></div>
-            </Link>
+              <div className="dropdown">
+                <Link to="/admin/profile" className="not-hover">
+                  Profile
+                </Link>
+                <Link to="/admin/blogs" className="not-hover">
+                  Blog
+                </Link>
+                <Link to="/admin/friends" className="not-hover">
+                  Friends
+                </Link>
+                <Link to="/" onClick={handleLogout} className="not-hover">
+                  Logout
+                </Link>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="list">

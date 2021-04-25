@@ -11,6 +11,7 @@ const SideBar = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    document.location.reload();
   };
 
   useEffect(() => {

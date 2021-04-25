@@ -11,6 +11,11 @@
     width: 100%;
     max-width: 520px;
     overflow: hidden;
+
+    &--large {
+      max-width: 880px;
+      align-items: flex-start;
+    }
   }
 
   &__title {
@@ -18,8 +23,43 @@
     color: $white;
     width: 100%;
     font-size: 26px;
+    font-weight: bold;
     text-align: center;
     padding: 10px;
+
+    &--form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+
+      form {
+        font-size: 0;
+        position: relative;
+
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 12px;
+          height: 16px;
+          @include tranform_c(translateY(-50%));
+        }
+
+        input {
+          background: $red-light;
+          border: none;
+          border-radius: 5px;
+          color: $white;
+          width: 166px;
+          height: 40px;
+          padding: 8px 12px 8px 38px;
+
+          &::placeholder {
+            color: $white;
+          }
+        }
+      }
+    }
   }
 
   &__form {
@@ -153,6 +193,68 @@
 
       &:focus {
         outline: none;
+      }
+    }
+  }
+
+  &__blogs {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    .list {
+      border: 1px solid $grey-medium;
+      width: 100%;
+
+      li {
+        display: flex;
+        width: 100%;
+        text-align: center;
+
+        &:first-child {
+          font-weight: bold;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $grey-medium;
+        }
+
+        &:not(:first-child) {
+
+          .title,
+          .author {
+            text-align: left;
+          }
+        }
+
+        .title {
+          border-right: 1px solid $grey-medium;
+          width: 25%;
+          padding: 5px 10px;
+        }
+
+        .author {
+          border-right: 1px solid $grey-medium;
+          width: 25%;
+          padding: 5px 10px;
+        }
+
+        .review {
+          border-right: 1px solid $grey-medium;
+          width: 13%;
+          padding: 5px 10px;
+        }
+
+        .time {
+          border-right: 1px solid $grey-medium;
+          width: 15%;
+          padding: 5px 10px;
+        }
+
+        .manage {
+          width: 22%;
+          padding: 5px 10px;
+        }
       }
     }
   }

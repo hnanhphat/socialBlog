@@ -7,10 +7,7 @@ const loginUser = (data) => async (dispatch) => {
     const res = await api.post("/auth/login", data);
     localStorage.setItem("accessToken", res.data.data.accessToken);
     dispatch(routeActions.redirect("/"));
-    dispatch({
-      type: "LOGIN_REQUEST_SUCCESS",
-      payload: localStorage.getItem("accessToken", res.data.data.accessToken),
-    });
+    dispatch({ type: "LOGIN_REQUEST_SUCCESS", payload: false });
   } catch (error) {
     dispatch({ type: "LOGIN_REQUEST_FAIL", payload: null });
     console.log(error.message);

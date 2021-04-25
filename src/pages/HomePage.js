@@ -4,17 +4,19 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BlogActions } from "../redux/actions/blog.action";
 import SideBar from "../components/SideBar";
+import PaginationBar from "../components/PaginationBar";
 import Moment from "react-moment";
 
 const HomePage = () => {
   let dispatch = useDispatch();
   const blogList = useSelector((state) => state.blog.blogs.data);
+  const currentPage = useSelector((state) => state.blog.currentPage);
   const [random, setRandom] = useState(null);
 
   useEffect(() => {
     setRandom(Math.floor(Math.random() * 20));
-    dispatch(BlogActions.getBlog());
-  }, [dispatch]);
+    dispatch(BlogActions.getBlog(currentPage));
+  }, [dispatch, currentPage]);
 
   return (
     <div id="wrap">
@@ -78,6 +80,10 @@ const HomePage = () => {
                     </li>
                   ))}
               </ul>
+              <PaginationBar
+                currentPage={currentPage}
+                totalPage={blogList && blogList.data.totalPages}
+              />
             </div>
             <SideBar />
           </div>
