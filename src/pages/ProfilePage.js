@@ -8,15 +8,15 @@ const ProfilePage = () => {
   const dispatch = useDispatch()
   const currentUser = useSelector((state)=>state.user.currentUser.data)
   console.log("this is currentuser",currentUser)
-  useEffect(()=>{
-    dispatch(UserActions.getUser())
-  },[])
   let [image,setImage]= useState("");
   let [someBoolean,SetsomeBoolean] = useState(true);
   let [form,setForm] = useState({
     name:"",
     avatarUrl:image,
   })
+  useEffect(()=>{
+    dispatch(UserActions.getUser())
+  },[form])
   const handleEditAvatar = (e)=>{
     e.preventDefault();
     window.cloudinary.openUploadWidget(
@@ -48,7 +48,9 @@ const ProfilePage = () => {
     setForm({...form,[e.target.name]:e.target.value})
   }
   const handleSubmit = (e)=>{
-   dispatch(UserActions.editUser(form)) 
+    e.preventDefault();
+    const {name,avatarUrl} = form
+   dispatch(UserActions.editUser({name,avatarUrl})) 
   }
   return (
     <div>

@@ -10,10 +10,10 @@ const getUser = () => async (dispatch) => {
     }
   };
 
-const editUser = (form) => async (dispatch) =>{
+const editUser = ({name,avatarUrl}) => async (dispatch) =>{
     try {
         dispatch({ type: "EDITUSER_REQUEST_START", payload: null });
-        const data = await api.put("/users",form)
+        const data = await api.put("/users",{name,avatarUrl})
         console.log(data)
     } catch (error) {
         dispatch({ type: "EDITUSER_REQUEST_FAIL", payload: error.message });
