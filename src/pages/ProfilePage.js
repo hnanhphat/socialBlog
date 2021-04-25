@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const loading = useSelector((state)=>state.user.loading)
   console.log("this is currentuser",currentUser)
   let [someBoolean,SetsomeBoolean] = useState(true);
+  let [image,setImage]= useState(currentUser && currentUser.data.avatarUrl);
   let [form,setForm] = useState({
     name:currentUser && currentUser.data.name,
     avatarUrl:"",
@@ -28,7 +29,7 @@ const ProfilePage = () => {
       function (error, result) {
         if (!error) {
           if (result.event === "success") {
-            // setImage(result.info.url);
+            setImage(result.info.url);
             setForm({...form,avatarUrl:result.info.url})
             console.log("done",result.info.url)
           }
@@ -60,6 +61,7 @@ const ProfilePage = () => {
       {loading?(<h1 className="text-center">loading ...</h1>):(<>
         <h1 className="text-center">This is ProfilePage</h1>
       <Container>
+      <img width="100px" src={image} />
       <Form onSubmit={handleSubmit}>
       <Button variant="primary" type="edit" onClick={handleEdit}>
         Edit Name
