@@ -11,14 +11,15 @@ const userReducer = (state = initialState, action) => {
     case "GETUSER_REQUEST_START":
       state.loading = true;
       break;
-    case "EDITUSER_REQUEST_SUCCESS":
-      state.loading = false;
-      state.currentUser = payload;
-      break;
+    case "EDITUSER_REQUEST_FAIL":
     case "GETUSER_REQUEST_FAIL":
       state.error = payload;
       state.loading = false;
       break;
+    case "EDITUSER_REQUEST_SUCCESS":
+        state.loading = false;
+        state.currentUser = payload;
+        break;
     case "GETUSER_REQUEST_SUCCESS":
       state.currentUser = payload;
       state.loading = false;
