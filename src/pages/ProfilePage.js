@@ -15,7 +15,7 @@ const ProfilePage = () => {
   let [someBoolean,SetsomeBoolean] = useState(true);
   let [form,setForm] = useState({
     name:"",
-    avatarUrl:"",
+    avatarUrl:image,
   })
   const handleEditAvatar = (e)=>{
     e.preventDefault();
