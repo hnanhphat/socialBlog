@@ -14,6 +14,7 @@ const editUser = ({name,avatarUrl}) => async (dispatch) =>{
     try {
         dispatch({ type: "EDITUSER_REQUEST_START", payload: null });
         const data = await api.put("/users",{name,avatarUrl})
+        dispatch({ type: "EDITUSER_REQUEST_SUCCESS", payload: data });
         console.log(data)
     } catch (error) {
         dispatch({ type: "EDITUSER_REQUEST_FAIL", payload: error.message });

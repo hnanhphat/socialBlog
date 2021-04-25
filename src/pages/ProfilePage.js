@@ -7,18 +7,18 @@ import {UserActions} from '../redux/actions/user.action'
 const ProfilePage = () => {
   const dispatch = useDispatch()
   const currentUser = useSelector((state)=>state.user.currentUser.data)
+  const loading = useSelector((state)=>state.user.loading)
   console.log("this is currentuser",currentUser)
-  let [image,setImage]= useState("");
   let [someBoolean,SetsomeBoolean] = useState(true);
   let [form,setForm] = useState({
-    name:"",
-    avatarUrl:image,
+    name:currentUser && currentUser.data.name,
+    avatarUrl:"",
   })
   useEffect(()=>{
     dispatch(UserActions.getUser())
-  },[form])
+  },[])
   const handleEditAvatar = (e)=>{
-    e.preventDefault();
+    e.preventDefault()
     window.cloudinary.openUploadWidget(
       {
         cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
@@ -28,7 +28,9 @@ const ProfilePage = () => {
       function (error, result) {
         if (!error) {
           if (result.event === "success") {
-            setImage(result.info.url);
+            // setImage(result.info.url);
+            setForm({...form,avatarUrl:result.info.url})
+            console.log("done",result.info.url)
           }
         } else {
           console.log(error);
@@ -50,11 +52,13 @@ const ProfilePage = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     const {name,avatarUrl} = form
-   dispatch(UserActions.editUser({name,avatarUrl})) 
+   dispatch(UserActions.editUser({name,avatarUrl}))
+   SetsomeBoolean(true) 
   }
   return (
     <div>
-      <h1 className="text-center">This is ProfilePage</h1>
+      {loading?(<h1 className="text-center">loading ...</h1>):(<>
+        <h1 className="text-center">This is ProfilePage</h1>
       <Container>
       <Form onSubmit={handleSubmit}>
       <Button variant="primary" type="edit" onClick={handleEdit}>
@@ -79,8 +83,8 @@ const ProfilePage = () => {
        Cancel
       </Button></>)}
       </Form>
-      </Container>
-      
+      </Container></>)}
+     
     </div>
   );
 };
