@@ -14,12 +14,14 @@ const blogReducer = (state = initialState, action) => {
     case "SINGLEBLOG_REQUEST_START":
     case "REVIEWS_REQUEST_START":
     case "WRITEREVIEW_REQUEST_START":
+    case "CREATEBLOG_REQUEST_START":
       state.loading = true;
       break;
     case "BLOG_REQUEST_FAIL":
     case "SINGLEBLOG_REQUEST_FAIL":
     case "REVIEWS_REQUEST_FAIL":
     case "WRITEREVIEW_REQUEST_FAIL":
+    case "CREATEBLOG_REQUEST_FAIL":
       state.error = payload;
       state.loading = false;
       break;
@@ -36,6 +38,9 @@ const blogReducer = (state = initialState, action) => {
       state.loading = false;
       break;
     case "WRITEREVIEW_REQUEST_SUCCESS":
+      state.loading = false;
+      break;
+    case "CREATEBLOG_REQUEST_SUCCESS":
       state.loading = false;
       break;
     default:

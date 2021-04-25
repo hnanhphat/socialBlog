@@ -1,4 +1,5 @@
 import api from "../../apiService";
+import { routeActions } from "./route.action";
 
 const getBlog = () => async (dispatch) => {
   try {
@@ -42,4 +43,22 @@ const postReview = ({ content }, id) => async (dispatch) => {
   }
 };
 
-export const BlogActions = { getBlog, getSingleBlog, getReviews, postReview };
+const createBlog = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: "CREATEBLOG_REQUEST_START", payload: null });
+    const res = await api.post(`/blogs`, data);
+    dispatch(routeActions.redirect("/"));
+    dispatch({ type: "CREATEBLOG_REQUEST_SUCCESS", payload: null });
+  } catch (error) {
+    dispatch({ type: "CREATEBLOG_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
+export const BlogActions = {
+  getBlog,
+  getSingleBlog,
+  getReviews,
+  postReview,
+  createBlog,
+};

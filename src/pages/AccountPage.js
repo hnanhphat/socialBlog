@@ -6,8 +6,8 @@ import { routeActions } from "../redux/actions/route.action";
 
 const AccountPage = () => {
   const dispatch = useDispatch();
-  const redirectTo = useSelector((state) => state.route.redirectTo);
   const history = useHistory();
+  const redirectTo = useSelector((state) => state.route.redirectTo);
   const [status, setStatus] = useState(false);
   const [formSignIn, setFormSignIn] = useState({ email: "", password: "" });
   const [formSignUp, setFormSignUp] = useState({

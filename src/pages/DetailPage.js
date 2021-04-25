@@ -10,6 +10,7 @@ const DetailPage = () => {
   const dispatch = useDispatch();
   const singleBlog = useSelector((state) => state.blog.singleBlog.data);
   const imgHeight = document.getElementById("img-item");
+  console.log(singleBlog);
 
   // const checkLogin = localStorage.getItem("accessToken");
   const [update, setUpdate] = useState({});
