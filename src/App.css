@@ -756,7 +756,7 @@ input:focus {
     display: flex;
     flex-direction: column;
     width: 40%;
-    min-height: 380px; }
+    min-height: 340px; }
     .blog-detail__content .author {
       border-bottom: 1px solid #dbdbdb;
       display: flex;
@@ -991,8 +991,9 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    height: calc(100vh - 400px);
+    min-height: calc(100vh - 400px);
     font-family: "Montserrat", sans-serif;
+    padding-bottom: 45px;
     position: relative; }
     #home .first-view__quote .author {
       padding-left: 30px;

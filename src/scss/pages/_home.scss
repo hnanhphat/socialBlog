@@ -38,8 +38,9 @@
       flex-direction: column;
       justify-content: center;
       width: 50%;
-      height: calc(100vh - 400px);
+      min-height: calc(100vh - 400px);
       font-family: $mon;
+      padding-bottom: 45px;
       position: relative;
 
       .title {}
