@@ -70,7 +70,6 @@ const AccountPage = () => {
   useEffect(() => {
     if (redirectTo) {
       history.push(redirectTo);
-      document.location.reload();
       setStatus(false);
       dispatch(routeActions.removeRedirectTo());
     }

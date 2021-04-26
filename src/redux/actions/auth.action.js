@@ -6,6 +6,8 @@ const loginUser = (data) => async (dispatch) => {
     dispatch({ type: "LOGIN_REQUEST_START", payload: null });
     const res = await api.post("/auth/login", data);
     localStorage.setItem("accessToken", res.data.data.accessToken);
+    api.defaults.headers["authorization"] =
+      "Bearer " + localStorage.getItem("accessToken");
     dispatch(routeActions.redirect("/"));
     dispatch({ type: "LOGIN_REQUEST_SUCCESS", payload: false });
   } catch (error) {
