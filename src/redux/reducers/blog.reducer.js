@@ -13,6 +13,7 @@ const blogReducer = (state = initialState, action) => {
   switch (type) {
     case "BLOG_REQUEST_START":
     case "SEARCHBLOG_REQUEST_START":
+    case "FILTERBLOG_REQUEST_START":
     case "SINGLEBLOG_REQUEST_START":
     case "REVIEWS_REQUEST_START":
     case "WRITEREVIEW_REQUEST_START":
@@ -24,6 +25,7 @@ const blogReducer = (state = initialState, action) => {
       break;
     case "BLOG_REQUEST_FAIL":
     case "SEARCHBLOG_REQUEST_FAIL":
+    case "FILTERBLOG_REQUEST_FAIL":
     case "SINGLEBLOG_REQUEST_FAIL":
     case "REVIEWS_REQUEST_FAIL":
     case "WRITEREVIEW_REQUEST_FAIL":
@@ -40,6 +42,11 @@ const blogReducer = (state = initialState, action) => {
       state.loading = false;
       break;
     case "SEARCHBLOG_REQUEST_SUCCESS":
+      state.blogs = payload.data;
+      state.currentPage = payload.currentPage;
+      state.loading = false;
+      break;
+    case "FILTERBLOG_REQUEST_SUCCESS":
       state.blogs = payload.data;
       state.currentPage = payload.currentPage;
       state.loading = false;

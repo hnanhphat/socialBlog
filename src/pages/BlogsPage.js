@@ -11,10 +11,20 @@ const BlogsPage = () => {
   const currentUser = useSelector((state) => state.user.currentUser.data);
   const currentPage = useSelector((state) => state.blog.currentPage);
   const [keyword, setKeyword] = useState();
+  console.log(currentUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(BlogActions.searchBlog(currentPage, keyword));
+  };
+
+  const handleChecked = (e) => {
+    console.log(e.target);
+    if (e.target.checked) {
+      dispatch(BlogActions.filterBlog(currentPage, currentUser.data._id));
+    } else {
+      dispatch(BlogActions.getBlog(currentPage));
+    }
   };
 
   useEffect(() => {
@@ -26,6 +36,15 @@ const BlogsPage = () => {
       <div className="container container--large">
         <div className="add-blog__title add-blog__title--form">
           <span>Blog Manage</span>
+          <label>
+            My Blogs only
+            <input
+              type="checkbox"
+              name="checkedUser"
+              onChange={handleChecked}
+            />
+            <span></span>
+          </label>
           <form onSubmit={handleSubmit}>
             <svg
               aria-hidden="true"
@@ -71,7 +90,8 @@ const BlogsPage = () => {
                     <Moment fromNow>{blog.createdAt}</Moment>
                   </div>
                   <div className="manage">
-                    {currentUser.data.name === blog.author.name ? (
+                    {currentUser &&
+                    currentUser.data.name === blog.author.name ? (
                       <Link to={`/edit/${blog._id}`} className="not-hover">
                         Edit
                       </Link>

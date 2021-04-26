@@ -636,6 +636,42 @@ input:focus {
           padding: 8px 12px 8px 38px; }
           .add-blog__title--form form input::placeholder {
             color: #fff; }
+    .add-blog__title label {
+      font-size: 14px;
+      padding-left: 22px;
+      position: relative;
+      cursor: pointer; }
+      .add-blog__title label input {
+        position: absolute;
+        opacity: 0; }
+      .add-blog__title label span {
+        position: absolute;
+        border: 1px solid #fff;
+        width: 15px;
+        height: 15px;
+        top: 50%;
+        left: 0;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%); }
+        .add-blog__title label span:before {
+          content: "";
+          position: absolute;
+          background: #fff;
+          width: 11px;
+          height: 11px;
+          top: 1px;
+          left: 1px;
+          opacity: 0;
+          -webkit-transition: all 0.5s ease-out;
+          -moz-transition: all 0.5s ease-out;
+          -ms-transition: all 0.5s ease-out;
+          -o-transition: all 0.5s ease-out;
+          transition: all 0.5s ease-out; }
+      .add-blog__title label input:checked ~ span:before {
+        opacity: 1; }
   .add-blog__form {
     color: #8e8e8e;
     display: flex;
@@ -682,14 +718,14 @@ input:focus {
       padding: 8px 12px 8px 38px; }
       .add-blog__form input::placeholder {
         color: #8e8e8e; }
-    .add-blog__form button[type=button] {
+    .add-blog__form button[type="button"] {
       color: #8e8e8e;
       width: 40px;
       height: 40px;
       position: relative; }
-      .add-blog__form button[type=button].active {
+      .add-blog__form button[type="button"].active {
         color: #eb6d7c; }
-      .add-blog__form button[type=button] svg {
+      .add-blog__form button[type="button"] svg {
         position: absolute;
         width: 28px;
         top: 50%;
@@ -699,7 +735,7 @@ input:focus {
         -ms-transform: translate(-50%, -50%);
         -o-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%); }
-    .add-blog__form button[type=submit], .add-blog__form button.edit {
+    .add-blog__form button[type="submit"], .add-blog__form button.edit {
       background-image: linear-gradient(to right, #eb6d7c, #bd2950);
       border-radius: 100px;
       color: #fff;
