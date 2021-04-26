@@ -9,7 +9,10 @@ const loginUser = (data) => async (dispatch) => {
     api.defaults.headers["authorization"] =
       "Bearer " + localStorage.getItem("accessToken");
     dispatch(routeActions.redirect("/"));
-    dispatch({ type: "LOGIN_REQUEST_SUCCESS", payload: false });
+    dispatch({
+      type: "LOGIN_REQUEST_SUCCESS",
+      payload: res.data.data.accessToken,
+    });
   } catch (error) {
     dispatch({ type: "LOGIN_REQUEST_FAIL", payload: null });
     console.log(error.message);
@@ -29,4 +32,15 @@ const registerUser = (data) => async (dispatch) => {
   }
 };
 
-export const authActions = { loginUser, registerUser };
+const logoutUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: "LOGOUT_REQUEST_START", payload: null });
+    dispatch(routeActions.redirect("/login"));
+    dispatch({ type: "LOGOUT_REQUEST_SUCCESS", payload: null });
+  } catch (error) {
+    dispatch({ type: "LOGOUT_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
+export const authActions = { loginUser, registerUser, logoutUser };

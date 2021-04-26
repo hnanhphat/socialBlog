@@ -4,16 +4,17 @@ import noImg from "../img/no-image.png";
 import { Link } from "react-router-dom";
 import { userActions } from "../redux/actions/user.action";
 import { friendActions } from "../redux/actions/friends.action";
+import { authActions } from "../redux/actions/auth.action";
 
 const SideBar = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser.data);
   const receivedRequest = useSelector((state) => state.friends.received.data);
-  const checkLogin = localStorage.getItem("accessToken");
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   const handleLogout = () => {
     localStorage.clear();
-    document.location.reload();
+    dispatch(authActions.logoutUser());
   };
 
   const handleAccept = (id) => {
@@ -25,15 +26,15 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    if (checkLogin) {
+    if (isAuth) {
       dispatch(userActions.getUser());
       dispatch(friendActions.receivedRequest());
     }
-  }, [dispatch, checkLogin]);
+  }, [dispatch]);
 
   return (
     <nav id="sidebar" className="sidebar">
-      {checkLogin ? (
+      {isAuth ? (
         <div className="sidebar__content">
           <div className="author">
             {currentUser && currentUser.data.avatarUrl ? (

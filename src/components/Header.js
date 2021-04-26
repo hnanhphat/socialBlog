@@ -3,17 +3,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../redux/actions/user.action";
+import { authActions } from "../redux/actions/auth.action";
 
 const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [status, setStatus] = useState("");
   const currentUser = useSelector((state) => state.user.currentUser.data);
-  const checkLogin = localStorage.getItem("accessToken");
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   const handleLogout = () => {
     localStorage.clear();
-    document.location.reload();
+    dispatch(authActions.logoutUser());
   };
 
   useEffect(() => {
@@ -27,10 +28,10 @@ const Header = () => {
   }, [status]);
 
   useEffect(() => {
-    if (checkLogin) {
+    if (isAuth) {
       dispatch(userActions.getUser());
     }
-  }, [dispatch, checkLogin]);
+  }, [dispatch]);
 
   return (
     <header
@@ -57,7 +58,7 @@ const Header = () => {
         </svg>
       </Link>
       <div className="header__right">
-        {checkLogin ? (
+        {isAuth ? (
           <div className="list">
             <Link to="/add">Create Blog</Link>
             <div className="current-user">

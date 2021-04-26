@@ -64,9 +64,8 @@ const deleteBlog = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETEBLOG_REQUEST_START", payload: null });
     const res = await api.delete(`/blogs/${id}`);
-    console.log(res);
+    dispatch({ type: "DELETEBLOG_REQUEST_SUCCESS", payload: res });
     dispatch(routeActions.redirect("/"));
-    dispatch({ type: "DELETEBLOG_REQUEST_SUCCESS", payload: null });
   } catch (error) {
     dispatch({ type: "DELETEBLOG_REQUEST_FAIL", payload: null });
     console.log(error.message);

@@ -62,7 +62,7 @@ const DetailPage = () => {
     <div id="blog-detail" className="blog-detail">
       <div className="container container--small">
         <div className="blog-detail__img">
-          {singleBlog && singleBlog.data.images.length ? (
+          {singleBlog && singleBlog.data.images[0].length ? (
             <div id="img-item" className="img__item">
               <img
                 src={singleBlog && singleBlog.data.images[0]}

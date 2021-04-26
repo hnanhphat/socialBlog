@@ -371,6 +371,10 @@ input:focus {
 .sidebar {
   background: #fff;
   width: 38%; }
+  .sidebar--scroll {
+    position: sticky;
+    top: 20px;
+    right: 0; }
   .sidebar__content .author {
     display: flex;
     align-items: center;
