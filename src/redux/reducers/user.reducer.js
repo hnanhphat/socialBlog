@@ -4,6 +4,7 @@ const initialState = {
   error: "",
   currentPage: 1,
   allUser: [],
+  friendship: [],
 };
 
 const userReducer = (state = initialState, action) => {

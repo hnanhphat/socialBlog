@@ -57,7 +57,7 @@ const ProfilePage = () => {
   return (
     <div id="add-blog" className="add-blog">
       {loading ? (
-        <div class="loader"></div>
+        <div className="loader"></div>
       ) : (
         <div className="container">
           <h3 className="add-blog__title">Profile Page</h3>
