@@ -13,6 +13,21 @@ const getAllUser = (currentPage) => async (dispatch) => {
   }
 };
 
+const searchAllUser = (currentPage, keyword) => async (dispatch) => {
+  try {
+    dispatch({ type: "SEARCHALLUSER_REQUEST_START", payload: null });
+    const data = await api.get(
+      `/users?page=${currentPage}&limit=10&name[$regex]=${keyword}&name[$options]=i&sortBy[email]=1`
+    );
+    dispatch({
+      type: "SEARCHALLUSER_REQUEST_SUCCESS",
+      payload: { data: data, currentPage: currentPage },
+    });
+  } catch (error) {
+    dispatch({ type: "SEARCHALLUSER_REQUEST_FAIL", payload: error.message });
+  }
+};
+
 const sendRequest = (id) => async (dispatch) => {
   try {
     dispatch({ type: "SEND_REQUEST_START" });
@@ -70,6 +85,7 @@ const declineRequest = (id) => async (dispatch) => {
 
 export const friendActions = {
   getAllUser,
+  searchAllUser,
   sendRequest,
   cancelRequest,
   receivedRequest,
