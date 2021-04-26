@@ -8,6 +8,7 @@ import PaginationBar from "../components/PaginationBar";
 const BlogsPage = () => {
   let dispatch = useDispatch();
   const blogList = useSelector((state) => state.blog.blogs.data);
+  const currentUser = useSelector((state) => state.user.currentUser.data);
   const currentPage = useSelector((state) => state.blog.currentPage);
 
   const handleSubmit = (e) => {
@@ -62,13 +63,22 @@ const BlogsPage = () => {
                   <div className="time">
                     <Moment fromNow>{blog.createdAt}</Moment>
                   </div>
-                  <div className="manage">Manage</div>
+                  <div className="manage">
+                    {currentUser.data.name === blog.author.name ? (
+                      <Link to={`/edit/${blog._id}`} className="not-hover">
+                        Edit
+                      </Link>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </li>
               ))}
           </ul>
           <PaginationBar
             currentPage={currentPage}
             totalPage={blogList && blogList.data.totalPages}
+            user={false}
           />
         </div>
       </div>

@@ -5,15 +5,10 @@ import { userActions } from "../redux/actions/user.action";
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser.data);
-  console.log(currentUser);
   const loading = useSelector((state) => state.user.loading);
 
   const [someBoolean, setSomeBoolean] = useState(true);
   const [form, setForm] = useState({
-    name: currentUser && currentUser.data.name,
-    avatarUrl: currentUser && currentUser.data.avatarUrl,
-  });
-  console.log({
     name: currentUser && currentUser.data.name,
     avatarUrl: currentUser && currentUser.data.avatarUrl,
   });

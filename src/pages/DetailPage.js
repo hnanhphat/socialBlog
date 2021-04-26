@@ -2,14 +2,17 @@ import noImg from "../img/no-image.png";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { BlogActions } from "../redux/actions/blog.action";
+import { routeActions } from "../redux/actions/route.action";
 import Moment from "react-moment";
 
 const DetailPage = () => {
   const { id } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   const singleBlog = useSelector((state) => state.blog.singleBlog.data);
+  const redirectTo = useSelector((state) => state.route.redirectTo);
   const imgHeight = document.getElementById("img-item");
 
   const checkLogin = localStorage.getItem("accessToken");
@@ -40,10 +43,20 @@ const DetailPage = () => {
     e.target.reset();
   };
 
+  const handleDelete = () => {
+    dispatch(BlogActions.deleteBlog(id));
+  };
+
   useEffect(() => {
     dispatch(BlogActions.getSingleBlog(id));
     dispatch(BlogActions.getReviews(id));
-  }, [id, dispatch, imgHeight, update]);
+
+    if (redirectTo) {
+      history.push(redirectTo);
+      document.location.reload();
+      dispatch(routeActions.removeRedirectTo());
+    }
+  }, [id, dispatch, imgHeight, update, redirectTo, history]);
 
   return (
     <div id="blog-detail" className="blog-detail">
@@ -85,6 +98,31 @@ const DetailPage = () => {
             <h3 className="author__username">
               {singleBlog && singleBlog.data.author.name}
             </h3>
+            <div className="author__edit">
+              <div className="icon">
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fas"
+                  data-icon="ellipsis-v"
+                  className="svg-inline--fa fa-ellipsis-v fa-w-6"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 192 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"
+                  ></path>
+                </svg>
+              </div>
+              <div className="dropdown">
+                <Link to={`/edit/${id}`} className="not-hover">
+                  Edit
+                </Link>
+                <button onClick={handleDelete}>Delete</button>
+              </div>
+            </div>
           </div>
           <ul className="histories">
             {singleBlog &&

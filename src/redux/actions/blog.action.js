@@ -60,6 +60,32 @@ const createBlog = (data) => async (dispatch) => {
   }
 };
 
+const deleteBlog = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DELETEBLOG_REQUEST_START", payload: null });
+    const res = await api.delete(`/blogs/${id}`);
+    console.log(res);
+    dispatch(routeActions.redirect("/"));
+    dispatch({ type: "DELETEBLOG_REQUEST_SUCCESS", payload: null });
+  } catch (error) {
+    dispatch({ type: "DELETEBLOG_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
+const editBlog = (data, id) => async (dispatch) => {
+  try {
+    dispatch({ type: "EDITBLOG_REQUEST_START", payload: null });
+    const res = await api.put(`/blogs/${id}`, data);
+    console.log(res);
+    dispatch(routeActions.redirect("/"));
+    dispatch({ type: "EDITBLOG_REQUEST_SUCCESS", payload: null });
+  } catch (error) {
+    dispatch({ type: "EDITBLOG_REQUEST_FAIL", payload: null });
+    console.log(error.message);
+  }
+};
+
 const postReaction = (data) => async (dispatch) => {
   try {
     dispatch({ type: "REACTION_REQUEST_START", payload: null });
@@ -78,5 +104,7 @@ export const BlogActions = {
   getReviews,
   postReview,
   createBlog,
+  deleteBlog,
+  editBlog,
   postReaction,
 };

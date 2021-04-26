@@ -2,23 +2,30 @@ import React from "react";
 import { Pagination } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { BlogActions } from "../redux/actions/blog.action";
+import { userActions } from "../redux/actions/user.action";
 
-const PaginationBar = ({ currentPage, totalPage }) => {
+const PaginationBar = ({ currentPage, totalPage, user }) => {
   let dispatch = useDispatch();
 
   const handleClick = (page) => {
-    dispatch(BlogActions.getBlog(parseInt(page)));
+    user
+      ? dispatch(userActions.getAllUser(parseInt(page)))
+      : dispatch(BlogActions.getBlog(parseInt(page)));
   };
 
   const handleClickOnNext = () => {
     if (currentPage < totalPage) {
-      dispatch(BlogActions.getBlog(currentPage + 1));
+      user
+        ? dispatch(userActions.getAllUser(currentPage + 1))
+        : dispatch(BlogActions.getBlog(currentPage + 1));
     }
   };
 
   const handleClickOnPrev = () => {
     if (currentPage > 1) {
-      dispatch(BlogActions.getBlog(currentPage - 1));
+      user
+        ? dispatch(userActions.getAllUser(currentPage - 1))
+        : dispatch(BlogActions.getBlog(currentPage - 1));
     }
   };
 

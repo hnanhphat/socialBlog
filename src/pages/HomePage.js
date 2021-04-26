@@ -91,6 +91,7 @@ const HomePage = () => {
               <PaginationBar
                 currentPage={currentPage}
                 totalPage={blogList && blogList.data.totalPages}
+                user={false}
               />
             </div>
             <SideBar />

@@ -16,6 +16,8 @@ const blogReducer = (state = initialState, action) => {
     case "REVIEWS_REQUEST_START":
     case "WRITEREVIEW_REQUEST_START":
     case "CREATEBLOG_REQUEST_START":
+    case "DELETEBLOG_REQUEST_START":
+    case "EDITBLOG_REQUEST_START":
     case "REACTION_REQUEST_START":
       state.loading = true;
       break;
@@ -24,6 +26,8 @@ const blogReducer = (state = initialState, action) => {
     case "REVIEWS_REQUEST_FAIL":
     case "WRITEREVIEW_REQUEST_FAIL":
     case "CREATEBLOG_REQUEST_FAIL":
+    case "DELETEBLOG_REQUEST_FAIL":
+    case "EDITBLOG_REQUEST_FAIL":
     case "REACTION_REQUEST_FAIL":
       state.error = payload;
       state.loading = false;
@@ -45,6 +49,12 @@ const blogReducer = (state = initialState, action) => {
       state.loading = false;
       break;
     case "CREATEBLOG_REQUEST_SUCCESS":
+      state.loading = false;
+      break;
+    case "DELETEBLOG_REQUEST_SUCCESS":
+      state.loading = false;
+      break;
+    case "EDITBLOG_REQUEST_SUCCESS":
       state.loading = false;
       break;
     case "REACTION_REQUEST_SUCCESS":

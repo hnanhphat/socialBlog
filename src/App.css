@@ -391,6 +391,40 @@ input:focus {
     .sidebar__content .author__btn {
       color: #eb6d7c;
       font-weight: bold; }
+  .sidebar__content .friends {
+    padding: 10px; }
+    .sidebar__content .friends__title {
+      color: #8e8e8e;
+      font-size: 14px;
+      margin-bottom: 14px; }
+    .sidebar__content .friends__list li {
+      display: flex;
+      align-items: center; }
+      .sidebar__content .friends__list li:not(:last-child) {
+        margin-bottom: 16px; }
+      .sidebar__content .friends__list li .avatar {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        margin-right: 8px; }
+      .sidebar__content .friends__list li .username {
+        flex: 1;
+        font-size: 14px;
+        font-weight: bold; }
+      .sidebar__content .friends__list li .btns {
+        display: flex;
+        align-items: center; }
+        .sidebar__content .friends__list li .btns button {
+          margin: 0 2px; }
+          .sidebar__content .friends__list li .btns button:nth-child(1) {
+            color: green; }
+          .sidebar__content .friends__list li .btns button:nth-child(2) {
+            color: red; }
+          .sidebar__content .friends__list li .btns button svg {
+            width: 20px; }
   .sidebar__not-login {
     color: #8e8e8e;
     display: flex;
@@ -718,6 +752,8 @@ input:focus {
         .add-blog__blogs .list li:not(:first-child) .title,
         .add-blog__blogs .list li:not(:first-child) .author {
           text-align: left; }
+        .add-blog__blogs .list li.current {
+          display: none; }
         .add-blog__blogs .list li .title {
           border-right: 1px solid #dbdbdb;
           width: 25%;
@@ -730,13 +766,42 @@ input:focus {
           border-right: 1px solid #dbdbdb;
           width: 13%;
           padding: 5px 10px; }
+          .add-blog__blogs .list li .review--center {
+            display: flex;
+            align-items: center;
+            justify-content: center; }
+          .add-blog__blogs .list li .review .avatar {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px; }
         .add-blog__blogs .list li .time {
           border-right: 1px solid #dbdbdb;
-          width: 15%;
+          width: 17%;
           padding: 5px 10px; }
         .add-blog__blogs .list li .manage {
-          width: 22%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20%;
           padding: 5px 10px; }
+          .add-blog__blogs .list li .manage a,
+          .add-blog__blogs .list li .manage button {
+            background-image: linear-gradient(to right bottom, #eb6d7c, #bd2950);
+            border-radius: 100px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 100%;
+            font-size: 14px;
+            line-height: 18px; }
+          .add-blog__blogs .list li .manage--center button {
+            width: 60%;
+            height: 28px; }
 
 .blog-detail {
   display: flex;
@@ -770,8 +835,47 @@ input:focus {
         width: 32px;
         height: 32px; }
       .blog-detail__content .author__username {
+        flex: 1;
         font-size: 14px;
         margin-left: 14px; }
+      .blog-detail__content .author__edit {
+        width: 16px;
+        font-size: 0;
+        position: relative; }
+        .blog-detail__content .author__edit .icon {
+          width: 6px;
+          margin: 0 auto; }
+        .blog-detail__content .author__edit .dropdown {
+          position: absolute;
+          background: #fff;
+          border: 1px solid #dbdbdb;
+          width: 80px;
+          top: 100%;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          opacity: 0;
+          padding: 5px;
+          pointer-events: none;
+          -webkit-transition: all 0.5s ease-out;
+          -moz-transition: all 0.5s ease-out;
+          -ms-transition: all 0.5s ease-out;
+          -o-transition: all 0.5s ease-out;
+          transition: all 0.5s ease-out; }
+          .blog-detail__content .author__edit .dropdown button,
+          .blog-detail__content .author__edit .dropdown a {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            padding: 3px 5px;
+            line-height: 18px; }
+            .blog-detail__content .author__edit .dropdown button:not(:last-child),
+            .blog-detail__content .author__edit .dropdown a:not(:last-child) {
+              border-bottom: 1px solid #dbdbdb; }
+        @media only screen and (min-width: 48em) {
+          .blog-detail__content .author__edit:hover .dropdown {
+            opacity: 1;
+            pointer-events: unset; } }
     .blog-detail__content .histories {
       flex: 1;
       padding: 16px;
