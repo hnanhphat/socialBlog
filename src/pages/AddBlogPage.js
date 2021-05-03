@@ -15,6 +15,7 @@ const AddBlogPage = () => {
   });
 
   const handleChange = (e) => {
+    console.log({ ...formInput, [e.target.name]: e.target.value });
     setFormInput({ ...formInput, [e.target.name]: e.target.value });
   };
 

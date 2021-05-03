@@ -60,6 +60,40 @@
         }
       }
     }
+
+    label {
+      font-size: 14px;
+      padding-left: 22px;
+      position: relative;
+      cursor: pointer;
+      input {
+        position: absolute;
+        opacity: 0;
+      }
+      span {
+        position: absolute;
+        border: 1px solid $white;
+        width: 15px;
+        height: 15px;
+        top: 50%;
+        left: 0;
+        @include tranform_c(translateY(-50%));
+        &:before {
+          content: "";
+          position: absolute;
+          background: $white;
+          width: 11px;
+          height: 11px;
+          top: 1px;
+          left: 1px;
+          opacity: 0;
+          @include transition_c(all 0.5s ease-out);
+        }
+      }
+      input:checked ~ span:before {
+        opacity: 1;
+      }
+    }
   }
 
   &__form {
@@ -124,7 +158,7 @@
     }
 
     button {
-      &[type=button] {
+      &[type="button"] {
         color: $grey-dark;
         width: 40px;
         height: 40px;
@@ -143,7 +177,7 @@
         }
       }
 
-      &[type=submit],
+      &[type="submit"],
       &.edit {
         background-image: linear-gradient(to right, $red-light, $red-dark);
         border-radius: 100px;
@@ -220,7 +254,6 @@
         }
 
         &:not(:first-child) {
-
           .title,
           .author {
             text-align: left;

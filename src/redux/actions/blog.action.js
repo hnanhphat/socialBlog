@@ -14,6 +14,36 @@ const getBlog = (currentPage) => async (dispatch) => {
   }
 };
 
+const searchBlog = (currentPage, keyword) => async (dispatch) => {
+  try {
+    dispatch({ type: "SEARCHBLOG_REQUEST_START" });
+    const data = await api.get(
+      `/blogs?page=${currentPage}&limit=10&title[$regex]=${keyword}&title[$options]=i`
+    );
+    dispatch({
+      type: "SEARCHBLOG_REQUEST_SUCCESS",
+      payload: { data: data, currentPage: currentPage },
+    });
+  } catch (error) {
+    dispatch({ type: "SEARCHBLOG_REQUEST_FAIL", payload: error.message });
+  }
+};
+
+const filterBlog = (currentPage, keyword) => async (dispatch) => {
+  try {
+    dispatch({ type: "FILTERBLOG_REQUEST_START" });
+    const data = await api.get(
+      `/blogs?page=${currentPage}&limit=10&author=${keyword}`
+    );
+    dispatch({
+      type: "FILTERBLOG_REQUEST_SUCCESS",
+      payload: { data: data, currentPage: currentPage },
+    });
+  } catch (error) {
+    dispatch({ type: "FILTERBLOG_REQUEST_FAIL", payload: error.message });
+  }
+};
+
 const getSingleBlog = (id) => async (dispatch) => {
   try {
     dispatch({ type: "SINGLEBLOG_REQUEST_START" });
@@ -64,9 +94,8 @@ const deleteBlog = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETEBLOG_REQUEST_START", payload: null });
     const res = await api.delete(`/blogs/${id}`);
-    console.log(res);
+    dispatch({ type: "DELETEBLOG_REQUEST_SUCCESS", payload: res });
     dispatch(routeActions.redirect("/"));
-    dispatch({ type: "DELETEBLOG_REQUEST_SUCCESS", payload: null });
   } catch (error) {
     dispatch({ type: "DELETEBLOG_REQUEST_FAIL", payload: null });
     console.log(error.message);
@@ -100,6 +129,8 @@ const postReaction = (data) => async (dispatch) => {
 
 export const BlogActions = {
   getBlog,
+  searchBlog,
+  filterBlog,
   getSingleBlog,
   getReviews,
   postReview,

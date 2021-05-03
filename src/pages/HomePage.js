@@ -61,7 +61,7 @@ const HomePage = () => {
                           </div>
                         </div>
                         <div className="img">
-                          {blog.images.length ? (
+                          {blog.images[0] && blog.images[0].length ? (
                             <div className="img__item">
                               <img src={blog.images[0]} alt={blog.title} />
                             </div>

@@ -11,6 +11,11 @@ const PaginationBar = ({ currentPage, totalPage, user }) => {
     user
       ? dispatch(userActions.getAllUser(parseInt(page)))
       : dispatch(BlogActions.getBlog(parseInt(page)));
+    window.scrollTo({
+      top: window.innerHeight,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleClickOnNext = () => {
@@ -19,6 +24,11 @@ const PaginationBar = ({ currentPage, totalPage, user }) => {
         ? dispatch(userActions.getAllUser(currentPage + 1))
         : dispatch(BlogActions.getBlog(currentPage + 1));
     }
+    window.scrollTo({
+      top: window.innerHeight,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleClickOnPrev = () => {
@@ -27,6 +37,11 @@ const PaginationBar = ({ currentPage, totalPage, user }) => {
         ? dispatch(userActions.getAllUser(currentPage - 1))
         : dispatch(BlogActions.getBlog(currentPage - 1));
     }
+    window.scrollTo({
+      top: window.innerHeight,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
