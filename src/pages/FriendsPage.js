@@ -1,7 +1,6 @@
 import noImg from "../img/no-image.png";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../redux/actions/user.action";
 import { friendActions } from "../redux/actions/friends.action";
 import PaginationBar from "../components/PaginationBar";
 

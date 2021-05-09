@@ -11,7 +11,6 @@ const SideBar = () => {
   const currentUser = useSelector((state) => state.user.currentUser.data);
   const receivedRequest = useSelector((state) => state.friends.received.data);
   const isAuth = useSelector((state) => state.auth.isAuth);
-  console.log(receivedRequest);
 
   const handleLogout = () => {
     localStorage.clear();

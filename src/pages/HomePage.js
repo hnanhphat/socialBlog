@@ -55,7 +55,16 @@ const HomePage = () => {
                     <li key={blog._id}>
                       <Link to={`/${blog._id}`} className="not-hover">
                         <div className="author">
-                          <div className="author__avatar author__avatar--no-img"></div>
+                          {blog.author.avatarUrl ? (
+                            <div
+                              className="author__avatar"
+                              style={{
+                                backgroundImage: `url('${blog.author.avatarUrl}')`,
+                              }}
+                            ></div>
+                          ) : (
+                            <div className="author__avatar author__avatar--no-img"></div>
+                          )}
                           <div className="author__username">
                             {blog.author.name}
                           </div>

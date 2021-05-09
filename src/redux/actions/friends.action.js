@@ -65,7 +65,7 @@ const acceptRequest = (id) => async (dispatch) => {
   try {
     dispatch({ type: "ACCEPT_REQUEST_START" });
     const data = await api.post(`/friends/manage/${id}`);
-    dispatch({ type: "ACCEPT_REQUEST_SUCCESS", payload: "accepted" });
+    dispatch({ type: "ACCEPT_REQUEST_SUCCESS", payload: data });
   } catch (error) {
     dispatch({ type: "ACCEPT_REQUEST_FAIL", payload: error.message });
     console.log(error.message);
@@ -76,7 +76,7 @@ const declineRequest = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DECLINE_REQUEST_START" });
     const data = await api.delete(`/friends/manage/${id}`);
-    dispatch({ type: "DECLINE_REQUEST_SUCCESS", payload: data });
+    dispatch({ type: "DECLINE_REQUEST_SUCCESS", payload: "declined" });
   } catch (error) {
     dispatch({ type: "DECLINE_REQUEST_FAIL", payload: error.message });
     console.log(error.message);

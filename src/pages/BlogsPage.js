@@ -11,7 +11,6 @@ const BlogsPage = () => {
   const currentUser = useSelector((state) => state.user.currentUser.data);
   const currentPage = useSelector((state) => state.blog.currentPage);
   const [keyword, setKeyword] = useState();
-  console.log(currentUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +18,6 @@ const BlogsPage = () => {
   };
 
   const handleChecked = (e) => {
-    console.log(e.target);
     if (e.target.checked) {
       dispatch(BlogActions.filterBlog(currentPage, currentUser.data._id));
     } else {

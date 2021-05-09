@@ -9,6 +9,7 @@ const loginUser = (data) => async (dispatch) => {
     api.defaults.headers["authorization"] =
       "Bearer " + localStorage.getItem("accessToken");
     dispatch(routeActions.redirect("/"));
+    console.log(res);
     dispatch({
       type: "LOGIN_REQUEST_SUCCESS",
       payload: res.data.data.accessToken,

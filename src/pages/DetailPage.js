@@ -15,6 +15,8 @@ const DetailPage = () => {
   const redirectTo = useSelector((state) => state.route.redirectTo);
   const imgHeight = document.getElementById("img-item");
 
+  console.log(singleBlog);
+
   const checkLogin = localStorage.getItem("accessToken");
   const [update, setUpdate] = useState({});
   const [content, setContent] = useState({ content: "" });
