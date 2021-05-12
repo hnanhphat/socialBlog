@@ -11,6 +11,7 @@ const FriendsPage = () => {
   const allUser = useSelector((state) => state.friends.friends.data);
   const friendsRequest = useSelector((state) => state.friends.friendsRequest);
   const [keyword, setKeyword] = useState();
+  console.log(allUser);
 
   const handleSubmit = (e) => {
     e.preventDefault();
